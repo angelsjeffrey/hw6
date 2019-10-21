@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+	body {margin:0;
+		background-color: #8db4c7;}
+		#gallery img {
+			width: 20%;
+			height: 200px;
+		}
+		#expanded img {
+			width: 400px;
+			height: 400px;
+			position: absolute;
+			top: 70%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+		#information{
+			position: absolute;
+			font-size: 27px;
+			top: 70%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			color: white;
+		}
+	</style>
+</head>
+
+<body>
+	<div id = "gallery"></div>
+	<div id = "expanded"></div>
+	<div id = "information"></div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		let gallery = [
+		{
+			name: "Toil Today Dream Tonight",
+			price: "$10,000",
+			img: "http://www.paintinghere.com/uploadpic/Vincent%20van%20Gogh/big/toil_today_dream_tonight.jpg"        
+		},
+		{
+			name: "Wheatfield With Crows",
+			price: "$7,000",
+			img: "https://www.theartstory.org/images20/new_design/bio_box/bio_box_van_gogh_vincent.jpg?2"
+		},
+		{
+			name: "Bedroom In Arles",
+			price: "$5,000",
+			img: "https://www.michiganradio.org/sites/michigan/files/styles/x_large/public/201302/Van%20Gogh's%20Bedroom%20in%20Arles.jpg"
+		},
+		{
+			name: "Vincent's Chair With His Pipe",
+			price: "$13,000",
+			img: "https://cdn.topofart.com/images/artists/Vincent_van_Gogh/paintings/gogh008.jpg"
+		},
+		{
+			name: "Starry Night",
+			price: "$20,000",
+			img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg"
+		}
+		];
+
+		function displayArt() {
+			for (var i = 0; i < gallery.length; i++) {
+				document.getElementById("gallery").innerHTML += "<img src = " + gallery[i].img + ">";
+			}
+		}
+
+		window.onload = displayArt();
+
+		$(document).ready(function(){ 
+			$("#gallery img").hover(function() {
+				var index = $(this).index();
+				$("#expanded").html("<img src = " + gallery[index].img + ">").hide().fadeIn(500);
+			});
+		});
+		$(document).ready(function(){ 
+			$("#gallery img").click(function() {
+				var index = $(this).index();
+				$("#information").html(gallery[index].name + "<br>" + gallery[index].price).fadeIn().delay(5000).fadeOut();
+			});
+		});
+
+
+
+	</script>
+
+
+</body>
+</html>
